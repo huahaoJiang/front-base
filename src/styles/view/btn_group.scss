@@ -1,0 +1,31 @@
+.radio-group__analyze {
+  :deep(.n-radio-group) {
+    height: 29px;
+    line-height: 29px;
+  }
+
+  :deep(.n-radio-button) {
+    height: 29px;
+  }
+  :deep(.n-radio-group__splitor) {
+    height: 29px;
+  }
+
+  :deep(.n-radio__label) {
+    font-weight: 500;
+    font-size: 12px;
+    height: 29px;
+    line-height: 29px;
+  }
+
+  :deep(.n-radio-button__state-border) {
+    box-shadow: none !important;
+  }
+}
+
+.btn-group__analyze {
+  :deep(.n-button) {
+    padding: 14.5px 14px;
+    font-size: 12px;
+  }
+}

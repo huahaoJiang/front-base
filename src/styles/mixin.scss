@@ -1,0 +1,12 @@
+@mixin mutli-line-no-wrap($line: 1) {
+  word-break: break-all;
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: pre-wrap;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+  &::before {
+    content: '';
+    display: block;
+  }
+}

@@ -1,0 +1,9 @@
+node_modules
+.DS_Store
+toolkit
+dist-ssr
+*.local
+.idea
+src/types/auto-imports.d.ts
+src/types/components.d.ts
+/stats.html
