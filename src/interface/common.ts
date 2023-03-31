@@ -13,11 +13,6 @@ export enum ConditionTypeEnum {
   'select' = 'select'
 }
 
-export enum TrackAnalyzeEnum {
-  sketch = '2',
-  analyze = '3',
-  market = '5'
-}
 export function handleAmount(amount: number): { val: number; unit: AmountUnit; precision: number } {
   if (amount < 10000) {
     return {
@@ -84,14 +79,4 @@ export function secondaryMarketAmountTransform(amount: number) {
       unit: '万亿'
     }
   }
-}
-
-export interface IConditionColumns {
-  title?: string
-  key: string
-  multiple?: boolean
-  hideDivider?: boolean
-  value?: string
-  maxLevel?: number
-  default?: string | string[]
 }

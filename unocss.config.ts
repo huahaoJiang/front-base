@@ -1,4 +1,8 @@
-import { defineConfig, presetAttributify, presetUno } from 'unocss'
+import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss'
+
+import { getRootPath, handleSvgFile } from './build/utils'
+
+const customIconPath = getRootPath('src', 'assets/icons')
 
 export default defineConfig({
   shortcuts: [
@@ -15,5 +19,18 @@ export default defineConfig({
     ['linear', { transition: 'all .15s linear' }],
     ['cursor', { cursor: 'pointer' }]
   ],
-  presets: [presetUno(), presetAttributify()]
+  presets: [
+    presetUno(),
+    presetAttributify(),
+    presetIcons({
+      extraProperties: {
+        display: 'inline-block',
+        'vertical-align': 'middle'
+      },
+      collections: {
+        antd: () => import('@iconify-json/ant-design').then(i => i.icons as any),
+        tj: handleSvgFile(customIconPath + '/')
+      }
+    })
+  ]
 })

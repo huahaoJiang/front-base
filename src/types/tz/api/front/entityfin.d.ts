@@ -24,6 +24,7 @@ declare global {
             roundsList?: string
             typeList?: string
             isTrack?: boolean
+            dataSwitch?: string
           } & Tz.Utils.Request.Pagination.Params
 
           interface Org extends Tz.Model.Front.EntityFin.BaseOrg {

@@ -1,4 +1,3 @@
-<!--
 <template>
   <div class="login-bg" f-c-c>
     <div class="w-585px h-330px"></div>
@@ -28,7 +27,7 @@
           />
         </div>
         <UserWay v-if="currentWay === LoginWay.user" />
-        <QrWay v-show="currentWay === LoginWay.qr" />
+        <!--        <QrWay v-show="currentWay === LoginWay.qr" />-->
         <router-view></router-view>
       </div>
     </div>
@@ -40,15 +39,14 @@ import CutToQr from '@/assets/images/login/toQrCode.png'
 import CutToUser from '@/assets/images/login/toUser.png'
 import { useLoginStore } from '@/store/login'
 
-import QrWay from './qrCode.vue'
 import UserWay from './user.vue'
 
 enum LoginWay {
   user = 'user',
   qr = 'qr'
 }
-const currentWay = ref(LoginWay.qr)
-const title = ref('飞书扫码登录')
+const currentWay = ref(LoginWay.user)
+const title = ref('用户登录')
 
 const loginStore = useLoginStore()
 const router = useRouter()
@@ -68,7 +66,7 @@ function handleCutWay(way: LoginWay) {
       title.value = '欢迎登录'
       break
     case LoginWay.qr:
-      title.value = '飞书扫码登录'
+      title.value = '扫码登录'
       break
   }
 }
@@ -77,7 +75,6 @@ function handleCutWay(way: LoginWay) {
 <style lang="scss" scoped>
 .login-bg {
   height: 100vh;
-  background-image: url(@/assets/images/login_bg.png);
   background-size: cover;
 }
 
@@ -112,4 +109,3 @@ function handleCutWay(way: LoginWay) {
   }
 }
 </style>
--->

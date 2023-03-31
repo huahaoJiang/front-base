@@ -1,13 +1,14 @@
 <template>
   <n-dropdown :options="options" @select="handleSelect">
     <div class="avatar">
-      <img :src="userStore.avatar" />
+      <img :src="userStore.avatar || defaultAvatar" />
       <span style="color: #ecf1fe">{{ userStore.name }}</span>
     </div>
   </n-dropdown>
 </template>
 
 <script lang="ts">
+import defaultAvatar from '@/assets/images/cat.webp'
 import { useUserStore } from '@/store/user'
 import { renderIcon } from '@/utils/icon'
 
@@ -37,6 +38,7 @@ export default defineComponent({
       }
     }
     return {
+      defaultAvatar,
       userStore,
       options,
       handleSelect

@@ -12,20 +12,13 @@ function scheduler(callback: () => void, timeout?: number) {
 }
 
 /**
- * 从非/track跳转到/track页面 preload /track/trackInvest页面中getTrackInvest
+ * 创建空闲时任务
  */
-const trackDetailPreload: PreloadTask = (to, from) => {
-  // 避免在/track/trackInvest刷新触发两次getTrackInvest
-  if (
-    !from.fullPath.startsWith('/track') &&
-    to.fullPath.startsWith('/track') &&
-    !to.fullPath.startsWith('/track/trackInvest')
-  ) {
-    scheduler(() => {
-      console.log(1)
-    })
-  }
+const trackDetailPreload: PreloadTask = () => {
+  scheduler(function () {
+    // 执行
+  })
 }
 
-// 预加在任务在全局后置钩子中被执行
+// 注册空闲任务
 export const PRELOAD_TASK: PreloadTask[] = [trackDetailPreload]

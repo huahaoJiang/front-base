@@ -39,21 +39,7 @@ export default defineConfig(({ command, mode }) => {
       target: 'es2015',
       outDir: OUTPUT_DIR,
       reportCompressedSize: false, // 启用/禁用 gzip 压缩大小报告
-      chunkSizeWarningLimit: 1024, // chunk 大小警告的限制（单位kb）
-      rollupOptions: {
-        output: {
-          manualChunks(id) {
-            // 将pinia的全局库实例打包进vendor，避免和页面一起打包造成资源重复引入
-            if (id.includes(resolve(__dirname, '/src/store/index.ts'))) {
-              return 'vendor'
-            }
-
-            if (id.includes('naive-ui')) {
-              return 'naive-ui'
-            }
-          }
-        }
-      }
+      chunkSizeWarningLimit: 1024 // chunk 大小警告的限制（单位kb）
     }
   }
 })

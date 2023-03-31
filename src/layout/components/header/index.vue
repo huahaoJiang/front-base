@@ -6,7 +6,6 @@
         <HeaderMenu />
       </div>
       <div class="h-right">
-        <GlobalSearch v-if="showGlobalSearch" />
         <UserAvatar />
       </div>
     </div>
@@ -17,10 +16,6 @@
 import SideLogo from './components/HeaderLogo.vue'
 import HeaderMenu from './components/HeaderMenu.vue'
 import UserAvatar from './components/UserAvatar.vue'
-const router = useRouter()
-const showGlobalSearch = computed(() => {
-  return router.hasRoute('GlobalSearch')
-})
 </script>
 
 <style lang="scss" scoped>

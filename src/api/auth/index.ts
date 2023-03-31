@@ -20,7 +20,7 @@ export const loginByQrCode = (params: Tz.Api.Auth.Token.Post.Req) => {
     method: 'post',
     params: {
       grantType: 'social',
-      tenantId: import.meta.env.VITE_TENANT_ID || '629622',
+      tenantId: import.meta.env.VITE_TENANT_ID,
       source: 'feishu',
       state: 'STATE',
       ...params

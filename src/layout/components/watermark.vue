@@ -50,7 +50,7 @@
 </template>
 
 <script lang="ts" setup>
-import Watermark from '@/assets/images/403.png'
+import Watermark from '@/assets/images/watermark.png'
 import { useUserStore } from '@/store/user'
 
 const userInfo = useUserStore()

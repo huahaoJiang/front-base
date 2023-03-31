@@ -4,7 +4,6 @@ import { defineStore } from 'pinia'
 
 import { getMenu } from '@/api/auth'
 import type { IMenuItem, IRoute } from '@/interface/router'
-import { DetailMenu } from '@/interface/router'
 import { asyncRoutes, excludeConfigRoutes } from '@/router/view'
 import { detailRoutes } from '@/router/view/detail'
 
@@ -28,12 +27,21 @@ function translateMenus(menus: Tz.Api.System.Menu.Routes.MenuItem[]): IMenuItem[
   })
 }
 
+const menus = [
+  {
+    label: '首页',
+    key: '首页',
+    path: '/home',
+    code: 'home',
+    index: 1
+  }
+]
+
 export const usePermissionStore = defineStore('permission', {
   state: () => {
     return {
       accessRoutes: [] as IRoute[],
-      menus: [] as IMenuItem[] | null,
-      tracksMenu: DetailMenu as IMenuItem,
+      menus: menus as IMenuItem[] | null,
       currentMenu: (storage.get(currentMenuKey) || {}) as IMenuItem
     }
   },
@@ -95,14 +103,6 @@ export const usePermissionStore = defineStore('permission', {
           storage.set(currentMenuKey, currentMenu)
         }
       }
-    },
-    setTracksMenu(menu: IMenuItem = DetailMenu) {
-      this.tracksMenu = menu
-      this.setDetailMenu()
-    },
-    setDetailMenu() {
-      this.currentMenu = this.tracksMenu
-      storage.set(currentMenuKey, this.tracksMenu)
     }
   }
 })

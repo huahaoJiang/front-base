@@ -1,19 +1,29 @@
 import type { IRoute } from '@/interface/router'
 import EntityLayout from '@/layout/entityDetail.vue'
-import Layout from '@/layout/index.vue'
-import { useLoginStore } from '@/store/login'
 
 export const basicRoutes: IRoute[] = [
   {
     path: '/',
     name: 'Layout',
-    component: Layout,
-    redirect: '/desk'
+    component: EntityLayout,
+    redirect: '/home'
+  },
+  {
+    path: '/home',
+    name: 'home',
+    component: EntityLayout,
+    children: [
+      {
+        name: 'homeIndex',
+        path: '',
+        component: () => import('@/views/home/index.vue')
+      }
+    ]
   },
   {
     name: 'REDIRECT',
     path: '/redirect',
-    component: Layout,
+    component: EntityLayout,
     isHidden: true,
     children: [
       {
@@ -102,40 +112,6 @@ export const basicRoutes: IRoute[] = [
         delete to.query.redirect
       }
     }
-  },
-  {
-    name: 'LoginRedirect',
-    path: '/login/redirect',
-    component: () => import('@/views/login/redirect.vue'),
-    meta: {
-      title: '空白页'
-    },
-    beforeEnter: to => {
-      const redirect = useLoginStore().redirect
-      if (redirect) {
-        to.query = { ...to.query, redirect }
-      }
-    }
-  },
-  {
-    name: 'generateLogo',
-    path: '/generateLogo',
-    component: EntityLayout,
-    redirect: '/generateLogo/index',
-    meta: {
-      title: 'logo'
-    },
-    children: [
-      {
-        name: 'generateLogoIndex',
-        path: 'index',
-        component: () => import('@/views/generateLogo/index.vue'),
-        meta: {
-          title: '生成logo'
-        }
-      }
-    ],
-    isHidden: true
   }
 ]
 
@@ -145,11 +121,3 @@ export const NOT_FOUND_ROUTE = {
   redirect: '/error-page/404',
   isHidden: true
 }
-
-// const modules = import.meta.globEager('./modules/*.js')
-// const asyncRoutes: IRoute[] = []
-// Object.keys(modules).forEach(key => {
-//   asyncRoutes.push(...modules[key].default)
-// })
-//
-// export { asyncRoutes }
